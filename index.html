@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ntwanano Mabunda – Photo Gallery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --sand: #e8d5b0;
+      --earth: #8b5e3c;
+      --bark: #4a2e1a;
+      --sky: #c9dbe8;
+      --leaf: #5a7a4a;
+      --cream: #faf6ee;
+      --gold: #c9a84c;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bark);
+      font-family: 'Lato', sans-serif;
+      color: var(--cream);
+      min-height: 100vh;
+    }
+
+    /* HERO */
+    header {
+      background: linear-gradient(135deg, var(--bark) 0%, #2e1a0e 60%, #5a3a20 100%);
+      padding: 60px 40px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 4px solid var(--gold);
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 30%, rgba(201,168,76,0.15) 0%, transparent 60%);
+    }
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 900;
+      color: var(--sand);
+      letter-spacing: 2px;
+      position: relative;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+    }
+    header h1 span {
+      color: var(--gold);
+    }
+    header p {
+      margin-top: 12px;
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--sky);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      position: relative;
+    }
+    .divider {
+      width: 80px;
+      height: 3px;
+      background: var(--gold);
+      margin: 18px auto 0;
+      border-radius: 2px;
+      position: relative;
+    }
+
+    
+
+
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: #6a5a4a;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-top: 1px solid rgba(201,168,76,0.15);
+    }
+
+    /* MANUAL PHOTOS SECTION */
+    .manual-section {
+      max-width: 1100px;
+      margin: 48px auto 0;
+      padding: 0 24px;
+    }
+    .manual-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--sand);
+      margin-bottom: 28px;
+      letter-spacing: 1px;
+    }
+    .manual-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .tribute-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+      animation: fadeIn 0.5s ease both;
+    }
+    .tribute-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    }
+    .card-photo {
+      position: relative;
+      width: 100%;
+    }
+    .card-photo img {
+      width: 100%;
+      height: auto;
+      max-height: 600px;
+      object-fit: contain;
+      display: block;
+      background: #1a0e07;
+    }
+    .card-photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .card-label {
+      position: absolute;
+      bottom: 10px;
+      left: 12px;
+      background: var(--gold);
+      color: var(--bark);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+    .card-info {
+      padding: 14px 18px 18px;
+    }
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--sand);
+      margin-bottom: 10px;
+    }
+
+
+    .view-btn {
+      display: inline-block;
+      margin-top: 4px;
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      border-radius: 6px;
+      padding: 6px 16px;
+      font-size: 0.82rem;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .view-btn:hover { background: var(--gold); color: var(--bark); }
+
+    /* Manual lightbox */
+    .manual-lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .manual-lightbox.active { display: flex; }
+    .manual-lightbox img {
+      max-width: 92vw;
+      max-height: 82vh;
+      border-radius: 10px;
+      box-shadow: 0 0 60px rgba(201,168,76,0.3);
+      object-fit: contain;
+    }
+    .manual-lightbox-close {
+      position: absolute;
+      top: 20px; right: 28px;
+      background: none;
+      border: none;
+      color: var(--sand);
+      font-size: 2.4rem;
+      cursor: pointer;
+    }
+    .manual-lightbox-title {
+      color: var(--sand);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Ntwanano <span>Mabunda</span></h1>
+    <p>Photo Gallery &amp; Link Sharing</p>
+    <div class="divider"></div>
+  </header>
+
+
+  <!-- ============================================================
+       MANUAL PHOTOS — ADD YOUR OWN CARDS HERE
+       Just copy one <article> block and change:
+         src="your-image.jpg"    your image filename (same folder as this HTML)
+         alt="..."               a description
+         data-title="..."        title shown on the card
+         data-label="..."        small label text (e.g. Actress · 2024)
+  ============================================================ -->
+  <section class="manual-section">
+    <h2 class="manual-heading">&#128204; Uploaded Photos</h2>
+    <div class="manual-grid" id="manualGrid">
+
+ 
+      <article class="tribute-card" data-title="ntwanano.png" data-label="!Khwa ttu Heritage">
+        <div class="card-photo">
+          <img src="ntwanano.png" alt="Ntwanano poster" />
+          <div class="card-photo-overlay"></div>
+          <span class="card-label">!Khwa ttu Heritage</span>
+        </div>
+        <div class="card-info">
+          <div class="card-title">ntwanano.png</div>
+          <button class="view-btn" onclick="openManualLightbox(this)">&#128269; View Full</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+
+  <footer>Ntwanano Mabunda &nbsp;•&nbsp; Photo Gallery</footer>
+
+<script>
+  function openManualLightbox(btn) {
+    const card = btn.closest('.tribute-card');
+    const img = card.querySelector('img');
+    const title = card.getAttribute('data-title') || img.alt;
+    document.getElementById('manualLightboxImg').src = img.src;
+    document.getElementById('manualLightboxTitle').textContent = title;
+    document.getElementById('manualLightbox').classList.add('active');
+  }
+  function closeManualLightbox() {
+    document.getElementById('manualLightbox').classList.remove('active');
+  }
+  document.getElementById('manualLightbox').addEventListener('click', function(e) {
+    if (e.target === this) closeManualLightbox();
+  });
+</script>
+
+  <div class="manual-lightbox" id="manualLightbox">
+    <button class="manual-lightbox-close" onclick="closeManualLightbox()">&#215;</button>
+    <img id="manualLightboxImg" src="" alt=""/>
+    <div class="manual-lightbox-title" id="manualLightboxTitle"></div>
+  </div>
+
+
+</body>
+</html>

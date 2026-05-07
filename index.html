@@ -25,7 +25,6 @@
       min-height: 100vh;
     }
 
-    /* HERO */
     header {
       background: linear-gradient(135deg, var(--bark) 0%, #2e1a0e 60%, #5a3a20 100%);
       padding: 60px 40px 40px;
@@ -49,9 +48,7 @@
       position: relative;
       text-shadow: 0 2px 12px rgba(0,0,0,0.5);
     }
-    header h1 span {
-      color: var(--gold);
-    }
+    header h1 span { color: var(--gold); }
     header p {
       margin-top: 12px;
       font-size: 1rem;
@@ -83,9 +80,10 @@
       letter-spacing: 2px;
       text-transform: uppercase;
       border-top: 1px solid rgba(201,168,76,0.15);
+      margin-top: 48px;
     }
 
-    /* MANUAL PHOTOS SECTION */
+    /* GALLERY SECTION */
     .manual-section {
       max-width: 1100px;
       margin: 48px auto 0;
@@ -98,11 +96,14 @@
       margin-bottom: 28px;
       letter-spacing: 1px;
     }
+
+    /* Two equal columns side by side */
     .manual-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: 1fr 1fr;
       gap: 24px;
     }
+
     .tribute-card {
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(201,168,76,0.3);
@@ -110,22 +111,26 @@
       overflow: hidden;
       transition: transform 0.25s, box-shadow 0.25s;
       animation: fadeIn 0.5s ease both;
+      display: flex;
+      flex-direction: column;
     }
     .tribute-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 12px 40px rgba(0,0,0,0.5);
     }
+
+    /* Fixed-height photo area so both cards match */
     .card-photo {
       position: relative;
       width: 100%;
+      height: 320px;
+      background: #1a0e07;
     }
     .card-photo img {
       width: 100%;
-      height: auto;
-      max-height: 600px;
+      height: 100%;
       object-fit: contain;
       display: block;
-      background: #1a0e07;
     }
     .card-photo-overlay {
       position: absolute;
@@ -148,6 +153,7 @@
     }
     .card-info {
       padding: 14px 18px 18px;
+      flex: 1;
     }
     .card-title {
       font-family: 'Playfair Display', serif;
@@ -155,7 +161,6 @@
       color: var(--sand);
       margin-bottom: 10px;
     }
-
     .view-btn {
       display: inline-block;
       margin-top: 4px;
@@ -173,7 +178,7 @@
     }
     .view-btn:hover { background: var(--gold); color: var(--bark); }
 
-    /* Manual lightbox */
+    /* Lightbox */
     .manual-lightbox {
       display: none;
       position: fixed;
@@ -207,6 +212,12 @@
       font-family: 'Playfair Display', serif;
       font-size: 1.1rem;
     }
+
+    /* Responsive: stack on small screens */
+    @media (max-width: 600px) {
+      .manual-grid { grid-template-columns: 1fr; }
+      .card-photo { height: 240px; }
+    }
   </style>
 </head>
 <body>
@@ -219,7 +230,10 @@
 
   <section class="manual-section">
     <h2 class="manual-heading">&#128204; Uploaded Photos</h2>
-    <div class="manual-grid" id="manualGrid">
+
+    <div class="manual-grid">
+
+      <!-- Card 1 -->
       <article class="tribute-card" data-title="ntwanano.png" data-label="!Khwa ttu Heritage">
         <div class="card-photo">
           <img src="ntwanano.png" alt="Ntwanano poster" />
@@ -231,47 +245,48 @@
           <button class="view-btn" onclick="openManualLightbox(this)">&#128269; View Full</button>
         </div>
       </article>
-    </div>
-          <article class="tribute-card" data-title="ntwanano.png" data-label="Spider Diagram">
+
+      <!-- Card 2 — fixed: now properly inside the grid -->
+      <article class="tribute-card" data-title="ntwananoo.png" data-label="Mind Map">
         <div class="card-photo">
-          <img src="ntwananoo.png" alt="Ntwanano poster" />
+          <img src="ntwananoo.png" alt="Ntwanano mind map" />
           <div class="card-photo-overlay"></div>
           <span class="card-label">Mind Map</span>
         </div>
         <div class="card-info">
-          <div class="card-title">ntwanano.png</div>
+          <div class="card-title">ntwananoo.png</div>
           <button class="view-btn" onclick="openManualLightbox(this)">&#128269; View Full</button>
         </div>
       </article>
+
     </div>
   </section>
 
-
   <footer>Ntwanano Mabunda &nbsp;•&nbsp; Photo Gallery</footer>
 
-<script>
-  function openManualLightbox(btn) {
-    const card = btn.closest('.tribute-card');
-    const img = card.querySelector('img');
-    const title = card.getAttribute('data-title') || img.alt;
-    document.getElementById('manualLightboxImg').src = img.src;
-    document.getElementById('manualLightboxTitle').textContent = title;
-    document.getElementById('manualLightbox').classList.add('active');
-  }
-  function closeManualLightbox() {
-    document.getElementById('manualLightbox').classList.remove('active');
-  }
-  document.getElementById('manualLightbox').addEventListener('click', function(e) {
-    if (e.target === this) closeManualLightbox();
-  });
-</script>
-
+  <!-- Lightbox -->
   <div class="manual-lightbox" id="manualLightbox">
     <button class="manual-lightbox-close" onclick="closeManualLightbox()">&#215;</button>
     <img id="manualLightboxImg" src="" alt=""/>
     <div class="manual-lightbox-title" id="manualLightboxTitle"></div>
   </div>
 
+  <script>
+    function openManualLightbox(btn) {
+      const card = btn.closest('.tribute-card');
+      const img = card.querySelector('img');
+      const title = card.getAttribute('data-title') || img.alt;
+      document.getElementById('manualLightboxImg').src = img.src;
+      document.getElementById('manualLightboxTitle').textContent = title;
+      document.getElementById('manualLightbox').classList.add('active');
+    }
+    function closeManualLightbox() {
+      document.getElementById('manualLightbox').classList.remove('active');
+    }
+    document.getElementById('manualLightbox').addEventListener('click', function(e) {
+      if (e.target === this) closeManualLightbox();
+    });
+  </script>
 
 </body>
 </html>

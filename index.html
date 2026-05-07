@@ -70,32 +70,10 @@
       position: relative;
     }
 
-    
-
-
-
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     footer {
       text-align: center;
@@ -178,7 +156,6 @@
       margin-bottom: 10px;
     }
 
-
     .view-btn {
       display: inline-block;
       margin-top: 4px;
@@ -240,25 +217,26 @@
     <div class="divider"></div>
   </header>
 
-
-  <!-- ============================================================
-       MANUAL PHOTOS — ADD YOUR OWN CARDS HERE
-       Just copy one <article> block and change:
-         src="your-image.jpg"    your image filename (same folder as this HTML)
-         alt="..."               a description
-         data-title="..."        title shown on the card
-         data-label="..."        small label text (e.g. Actress · 2024)
-  ============================================================ -->
   <section class="manual-section">
     <h2 class="manual-heading">&#128204; Uploaded Photos</h2>
     <div class="manual-grid" id="manualGrid">
-
- 
       <article class="tribute-card" data-title="ntwanano.png" data-label="!Khwa ttu Heritage">
         <div class="card-photo">
           <img src="ntwanano.png" alt="Ntwanano poster" />
           <div class="card-photo-overlay"></div>
           <span class="card-label">!Khwa ttu Heritage</span>
+        </div>
+        <div class="card-info">
+          <div class="card-title">ntwanano.png</div>
+          <button class="view-btn" onclick="openManualLightbox(this)">&#128269; View Full</button>
+        </div>
+      </article>
+    </div>
+          <article class="tribute-card" data-title="ntwanano.png" data-label="Spider Diagram">
+        <div class="card-photo">
+          <img src="ntwananoo.png" alt="Ntwanano poster" />
+          <div class="card-photo-overlay"></div>
+          <span class="card-label">Mind Map</span>
         </div>
         <div class="card-info">
           <div class="card-title">ntwanano.png</div>

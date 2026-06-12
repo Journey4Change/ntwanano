@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ntwanano Mabunda – Photo Gallery</title>
+  <title>Ntwanano Mabunda – Document Gallery</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
   <style>
     :root {
@@ -119,23 +119,24 @@
       box-shadow: 0 12px 40px rgba(0,0,0,0.5);
     }
 
-    /* Fixed-height photo area so both cards match */
+    /* Fixed-height PDF preview area so both cards match */
     .card-photo {
       position: relative;
       width: 100%;
       height: 320px;
       background: #1a0e07;
     }
-    .card-photo img {
+    .card-photo embed,
+    .card-photo iframe {
       width: 100%;
       height: 100%;
-      object-fit: contain;
       display: block;
+      border: none;
     }
     .card-photo-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 50%);
+      background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 70%);
       pointer-events: none;
     }
     .card-label {
@@ -150,18 +151,27 @@
       padding: 3px 10px;
       border-radius: 20px;
       text-transform: uppercase;
+      z-index: 2;
     }
     .card-info {
       padding: 14px 18px 18px;
       flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
     .card-title {
       font-family: 'Playfair Display', serif;
       font-size: 1rem;
       color: var(--sand);
-      margin-bottom: 10px;
     }
-    .view-btn {
+    .card-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .view-btn,
+    .download-btn {
       display: inline-block;
       margin-top: 4px;
       background: transparent;
@@ -175,8 +185,10 @@
       letter-spacing: 1px;
       cursor: pointer;
       transition: background 0.2s, color 0.2s;
+      text-decoration: none;
     }
-    .view-btn:hover { background: var(--gold); color: var(--bark); }
+    .view-btn:hover,
+    .download-btn:hover { background: var(--gold); color: var(--bark); }
 
     /* Lightbox */
     .manual-lightbox {
@@ -191,12 +203,13 @@
       gap: 14px;
     }
     .manual-lightbox.active { display: flex; }
-    .manual-lightbox img {
-      max-width: 92vw;
-      max-height: 82vh;
+    .manual-lightbox iframe {
+      width: 92vw;
+      height: 82vh;
       border-radius: 10px;
       box-shadow: 0 0 60px rgba(201,168,76,0.3);
-      object-fit: contain;
+      border: none;
+      background: #fff;
     }
     .manual-lightbox-close {
       position: absolute;
@@ -217,6 +230,7 @@
     @media (max-width: 600px) {
       .manual-grid { grid-template-columns: 1fr; }
       .card-photo { height: 240px; }
+      .manual-lightbox iframe { width: 96vw; height: 70vh; }
     }
   </style>
 </head>
@@ -224,64 +238,71 @@
 
   <header>
     <h1>Ntwanano <span>Mabunda</span></h1>
-    <p>Photo Gallery &amp; Link Sharing</p>
+    <p>Document Gallery &amp; Link Sharing</p>
     <div class="divider"></div>
   </header>
 
   <section class="manual-section">
-    <h2 class="manual-heading">&#128204; Uploaded Photos</h2>
+    <h2 class="manual-heading">&#128204; Uploaded Documents</h2>
 
     <div class="manual-grid">
 
       <!-- Card 1 -->
-      <article class="tribute-card" data-title="ntwanano.png" data-label="!Khwa ttu Heritage">
+      <article class="tribute-card" data-title="Question 1" data-src="Document 21 (1).pdf" data-label="!Khwa ttu Heritage">
         <div class="card-photo">
-          <img src="ntwanano.png" alt="Ntwanano poster" />
+          <embed src="Document 21 (1).pdf" type="application/pdf" />
           <div class="card-photo-overlay"></div>
           <span class="card-label">!Khwa ttu Heritage</span>
         </div>
         <div class="card-info">
-          <div class="card-title">ntwanano.png</div>
-          <button class="view-btn" onclick="openManualLightbox(this)">&#128269; View Full</button>
+          <div class="card-title">Question 1</div>
+          <div class="card-actions">
+            <button class="view-btn" onclick="openManualLightbox(this)">&#128269; View Full</button>
+            <a class="download-btn" href="Document 21 (1).pdf" download>&#11015; Download</a>
+          </div>
         </div>
       </article>
 
-      <!-- Card 2 — fixed: now properly inside the grid -->
-      <article class="tribute-card" data-title="ntwananoo.png" data-label="Mind Map">
+      <!-- Card 2 -->
+      <article class="tribute-card" data-title="Q2.pdf" data-src="Q2.pdf" data-label="Mind Map">
         <div class="card-photo">
-          <img src="ntwananoo.png" alt="Ntwanano mind map" />
+          <embed src="Q2.pdf" type="application/pdf" />
           <div class="card-photo-overlay"></div>
           <span class="card-label">Mind Map</span>
         </div>
         <div class="card-info">
-          <div class="card-title">ntwananoo.png</div>
-          <button class="view-btn" onclick="openManualLightbox(this)">&#128269; View Full</button>
+          <div class="card-title">Question 2</div>
+          <div class="card-actions">
+            <button class="view-btn" onclick="openManualLightbox(this)">&#128269; View Full</button>
+            <a class="download-btn" href="Q2.pdf" download>&#11015; Download</a>
+          </div>
         </div>
       </article>
 
     </div>
   </section>
 
-  <footer>Ntwanano Mabunda &nbsp;•&nbsp; Photo Gallery</footer>
+  <footer>Ntwanano Mabunda &nbsp;•&nbsp; Document Gallery</footer>
 
   <!-- Lightbox -->
   <div class="manual-lightbox" id="manualLightbox">
     <button class="manual-lightbox-close" onclick="closeManualLightbox()">&#215;</button>
-    <img id="manualLightboxImg" src="" alt=""/>
+    <iframe id="manualLightboxFrame" src="" title=""></iframe>
     <div class="manual-lightbox-title" id="manualLightboxTitle"></div>
   </div>
 
   <script>
     function openManualLightbox(btn) {
       const card = btn.closest('.tribute-card');
-      const img = card.querySelector('img');
-      const title = card.getAttribute('data-title') || img.alt;
-      document.getElementById('manualLightboxImg').src = img.src;
+      const src = card.getAttribute('data-src');
+      const title = card.getAttribute('data-title');
+      document.getElementById('manualLightboxFrame').src = src;
       document.getElementById('manualLightboxTitle').textContent = title;
       document.getElementById('manualLightbox').classList.add('active');
     }
     function closeManualLightbox() {
       document.getElementById('manualLightbox').classList.remove('active');
+      document.getElementById('manualLightboxFrame').src = '';
     }
     document.getElementById('manualLightbox').addEventListener('click', function(e) {
       if (e.target === this) closeManualLightbox();

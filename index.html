@@ -1,313 +1,344 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ntwanano Mabunda – Document Gallery</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
-  <style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ntwanano Mabunda – Document Gallery</title>
+<link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet"/>
+<style>
     :root {
-      --sand: #e8d5b0;
-      --earth: #8b5e3c;
-      --bark: #4a2e1a;
-      --sky: #c9dbe8;
-      --leaf: #5a7a4a;
-      --cream: #faf6ee;
-      --gold: #c9a84c;
+        --sand: #e8d5b0;
+        --earth: #8b5e3c;
+        --bark: #4a2e1a;
+        --sky: #c9dbe8;
+        --leaf: #5a7a4a;
+        --cream: #faf6ee;
+        --gold: #c9a84c;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
 
     body {
-      background-color: var(--bark);
-      font-family: 'Lato', sans-serif;
-      color: var(--cream);
-      min-height: 100vh;
+        background-color: var(--bark);
+        font-family: 'Lato', sans-serif;
+        color: var(--cream);
+        min-height: 100vh;
     }
 
     header {
-      background: linear-gradient(135deg, var(--bark) 0%, #2e1a0e 60%, #5a3a20 100%);
-      padding: 60px 40px 40px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      border-bottom: 4px solid var(--gold);
+        background: linear-gradient(
+            135deg,
+            var(--bark) 0%,
+            #2e1a0e 60%,
+            #5a3a20 100%
+        );
+
+        padding: 60px 40px 40px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        border-bottom: 4px solid var(--gold);
     }
+
     header::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 70% 30%, rgba(201,168,76,0.15) 0%, transparent 60%);
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+            ellipse at 70% 30%,
+            rgba(201, 168, 76, 0.15) 0%,
+            transparent 60%
+        );
     }
+
     header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.2rem, 6vw, 4rem);
-      font-weight: 900;
-      color: var(--sand);
-      letter-spacing: 2px;
-      position: relative;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(2.2rem, 6vw, 4rem);
+        font-weight: 900;
+        color: var(--sand);
+        letter-spacing: 2px;
+        position: relative;
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
     }
-    header h1 span { color: var(--gold); }
+
+    header h1 span {
+        color: var(--gold);
+    }
+
     header p {
-      margin-top: 12px;
-      font-size: 1rem;
-      font-weight: 300;
-      color: var(--sky);
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      position: relative;
+        margin-top: 12px;
+        font-size: 1rem;
+        font-weight: 300;
+        color: var(--sky);
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        position: relative;
     }
+
     .divider {
-      width: 80px;
-      height: 3px;
-      background: var(--gold);
-      margin: 18px auto 0;
-      border-radius: 2px;
-      position: relative;
+        width: 80px;
+        height: 3px;
+        background: var(--gold);
+        margin: 18px auto 0;
+        border-radius: 2px;
+        position: relative;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
-    footer {
-      text-align: center;
-      padding: 24px;
-      color: #6a5a4a;
-      font-size: 0.8rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      border-top: 1px solid rgba(201,168,76,0.15);
-      margin-top: 48px;
-    }
-
-    /* GALLERY SECTION */
     .manual-section {
-      max-width: 1100px;
-      margin: 48px auto 0;
-      padding: 0 24px;
-    }
-    .manual-heading {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      color: var(--sand);
-      margin-bottom: 28px;
-      letter-spacing: 1px;
+        max-width: 1100px;
+        margin: 48px auto 0;
+        padding: 0 24px;
     }
 
-    /* Two equal columns side by side */
+    .manual-heading {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.8rem;
+        color: var(--sand);
+        margin-bottom: 28px;
+        letter-spacing: 1px;
+    }
+
     .manual-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
     }
 
     .tribute-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(201,168,76,0.3);
-      border-radius: 14px;
-      overflow: hidden;
-      transition: transform 0.25s, box-shadow 0.25s;
-      animation: fadeIn 0.5s ease both;
-      display: flex;
-      flex-direction: column;
-    }
-    .tribute-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(201, 168, 76, 0.3);
+        border-radius: 14px;
+        overflow: hidden;
+        transition: transform 0.25s, box-shadow 0.25s;
+        animation: fadeIn 0.5s ease both;
+        display: flex;
+        flex-direction: column;
     }
 
-    /* Fixed-height PDF preview area so both cards match */
+    .tribute-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    }
+
+
     .card-photo {
-      position: relative;
-      width: 100%;
-      height: 320px;
-      background: #1a0e07;
+        position: relative;
+        width: 100%;
+        height: 320px;
+        background: linear-gradient(
+            135deg,
+            #24150b,
+            #3d2515
+        );
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 30px;
+        text-align: center;
     }
-    .card-photo embed,
-    .card-photo iframe {
-      width: 100%;
-      height: 100%;
-      display: block;
-      border: none;
+
+    .file-icon {
+        width: 100px;
+        height: 120px;
+        background: #ffffff;
+        border-radius: 8px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
+        margin-bottom: 20px;
     }
-    .card-photo-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 70%);
-      pointer-events: none;
+
+    .file-icon::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 30px;
+        height: 30px;
+        background: #d9d9d9;
+        clip-path: polygon(0 0, 100% 100%, 0 100%);
     }
-    .card-label {
-      position: absolute;
-      bottom: 10px;
-      left: 12px;
-      background: var(--gold);
-      color: var(--bark);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      padding: 3px 10px;
-      border-radius: 20px;
-      text-transform: uppercase;
-      z-index: 2;
+
+    .file-icon span {
+        color: #d24726;
+        font-size: 2.5rem;
+        font-weight: 900;
     }
+
+    .file-extension {
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #d24726;
+        color: white;
+        padding: 5px 12px;
+        border-radius: 5px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+    .file-name {
+        color: var(--sand);
+        font-size: 0.9rem;
+        line-height: 1.5;
+        max-width: 500px;
+        word-break: break-word;
+    }
+
     .card-info {
-      padding: 14px 18px 18px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+        padding: 14px 18px 18px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
     }
+
     .card-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      color: var(--sand);
+        font-family: 'Playfair Display', serif;
+        font-size: 1rem;
+        color: var(--sand);
     }
+
     .card-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
     }
+
     .view-btn,
     .download-btn {
-      display: inline-block;
-      margin-top: 4px;
-      background: transparent;
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      border-radius: 6px;
-      padding: 6px 16px;
-      font-size: 0.82rem;
-      font-family: 'Lato', sans-serif;
-      font-weight: 700;
-      letter-spacing: 1px;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-      text-decoration: none;
+        display: inline-block;
+        margin-top: 4px;
+        background: transparent;
+        border: 1px solid var(--gold);
+        color: var(--gold);
+        border-radius: 6px;
+        padding: 6px 16px;
+        font-size: 0.82rem;
+        font-family: 'Lato', sans-serif;
+        font-weight: 700;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s;
+        text-decoration: none;
     }
+
     .view-btn:hover,
-    .download-btn:hover { background: var(--gold); color: var(--bark); }
-
-    /* Lightbox */
-    .manual-lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.92);
-      z-index: 2000;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 14px;
-    }
-    .manual-lightbox.active { display: flex; }
-    .manual-lightbox iframe {
-      width: 92vw;
-      height: 82vh;
-      border-radius: 10px;
-      box-shadow: 0 0 60px rgba(201,168,76,0.3);
-      border: none;
-      background: #fff;
-    }
-    .manual-lightbox-close {
-      position: absolute;
-      top: 20px; right: 28px;
-      background: none;
-      border: none;
-      color: var(--sand);
-      font-size: 2.4rem;
-      cursor: pointer;
-    }
-    .manual-lightbox-title {
-      color: var(--sand);
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
+    .download-btn:hover {
+        background: var(--gold);
+        color: var(--bark);
     }
 
-    /* Responsive: stack on small screens */
+    footer {
+        text-align: center;
+        padding: 24px;
+        color: #6a5a4a;
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        border-top: 1px solid rgba(201, 168, 76, 0.15);
+        margin-top: 48px;
+    }
+
     @media (max-width: 600px) {
-      .manual-grid { grid-template-columns: 1fr; }
-      .card-photo { height: 240px; }
-      .manual-lightbox iframe { width: 96vw; height: 70vh; }
+        .manual-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .card-photo {
+            height: 280px;
+        }
     }
-  </style>
+</style>
 </head>
 <body>
+<header>
+    <h1>
+        Ntwanano <span>Mabunda</span>
+    </h1>
 
-  <header>
-    <h1>Ntwanano <span>Mabunda</span></h1>
-    <p>Document Gallery &amp; Link Sharing</p>
+    <p>
+        Document Gallery &amp; Link Sharing
+    </p>
+
     <div class="divider"></div>
-  </header>
+</header>
 
-  <section class="manual-section">
-    <h2 class="manual-heading">&#128204; Uploaded Documents</h2>
 
+<section class="manual-section">
+
+    <h2 class="manual-heading">
+        📌 Uploaded Documents
+    </h2>
     <div class="manual-grid">
 
-      <!-- Card 1 -->
-      <article class="tribute-card" data-title="Question 1" data-src="Document 21 (1).pdf" data-label="!Khwa ttu Heritage">
-        <div class="card-photo">
-          <embed src="Document 21 (1).pdf" type="application/pdf" />
-          <div class="card-photo-overlay"></div>
-          <span class="card-label">eBook</span>
-        </div>
-        <div class="card-info">
-          <div class="card-title">Question 1</div>
-          <div class="card-actions">
-            <button class="view-btn" onclick="openManualLightbox(this)">&#128269; View Full</button>
-            <a class="download-btn" href="Document 21 (1).pdf" download>&#11015; Download</a>
-          </div>
-        </div>
-      </article>
+        <article
+            class="tribute-card"
+            data-title="Question 3.2"
+        >
 
-      <!-- Card 2 -->
-      <article class="tribute-card" data-title="Q2.pdf" data-src="Q2.pdf" data-label="Mind Map">
-        <div class="card-photo">
-          <embed src="Q2.pdf" type="application/pdf" />
-          <div class="card-photo-overlay"></div>
-          <span class="card-label">Mahikeng</span>
-        </div>
-        <div class="card-info">
-          <div class="card-title">Question 2</div>
-          <div class="card-actions">
-            <button class="view-btn" onclick="openManualLightbox(this)">&#128269; View Full</button>
-            <a class="download-btn" href="Q2.pdf" download>&#11015; Download</a>
-          </div>
-        </div>
-      </article>
+            <div class="card-photo">
+                <div class="file-icon">
+                    <span>P</span>
+                    <div class="file-extension">
+                        PPTX
+                    </div>
+                </div>
+                <div class="file-name">
+                    Q3.2_An_African_Thunderstorm_IIE_Lesson_Plan_Template.pptx
+                </div>
+            </div>
 
+
+            <div class="card-info">
+                <div class="card-title">
+                    Question 3.2
+                </div>
+                <div class="card-actions">
+                    <a
+                        class="view-btn"
+                        href="Q3.2_An_African_Thunderstorm_IIE_Lesson_Plan_Template.pptx"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        Open File
+                    </a>
+                    <a
+                        class="download-btn"
+                        href="Q3.2_An_African_Thunderstorm_IIE_Lesson_Plan_Template.pptx"
+                        download>
+                        ⬇ Download
+                    </a>
+                </div>
+            </div>
+        </article>
     </div>
-  </section>
-
-  <footer>Ntwanano Mabunda &nbsp;•&nbsp; Document Gallery</footer>
-
-  <!-- Lightbox -->
-  <div class="manual-lightbox" id="manualLightbox">
-    <button class="manual-lightbox-close" onclick="closeManualLightbox()">&#215;</button>
-    <iframe id="manualLightboxFrame" src="" title=""></iframe>
-    <div class="manual-lightbox-title" id="manualLightboxTitle"></div>
-  </div>
-
-  <script>
-    function openManualLightbox(btn) {
-      const card = btn.closest('.tribute-card');
-      const src = card.getAttribute('data-src');
-      const title = card.getAttribute('data-title');
-      document.getElementById('manualLightboxFrame').src = src;
-      document.getElementById('manualLightboxTitle').textContent = title;
-      document.getElementById('manualLightbox').classList.add('active');
-    }
-    function closeManualLightbox() {
-      document.getElementById('manualLightbox').classList.remove('active');
-      document.getElementById('manualLightboxFrame').src = '';
-    }
-    document.getElementById('manualLightbox').addEventListener('click', function(e) {
-      if (e.target === this) closeManualLightbox();
-    });
-  </script>
-
+</section>
+<footer>
+    Ntwanano Mabunda &nbsp;•&nbsp; Document Gallery
+</footer>
 </body>
 </html>
